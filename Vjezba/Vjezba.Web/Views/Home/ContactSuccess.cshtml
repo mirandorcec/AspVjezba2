@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Contact Success";
+    var responsePoruka = ViewBag.ResponsePoruka as string;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Home/Contact">Kontakt</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Poruka poslana</li>
+    </ol>
+</nav>
+<div class="text-center">
+    <h1 class="display-4">Contacted Successfully</h1>
+
+    <div class="alert alert-success text-center" role="alert">
+        @responsePoruka
+    </div>
+</div>

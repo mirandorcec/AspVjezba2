@@ -4,3 +4,6 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+LINK 1: <a class="nav-link text-dark" href="@Url.Action("FAQ", "Home", new { selected = 4 })">FAQ sa selektiranim pitanjem 4</a>
+<br>
+LINK 2: <a class="nav-link text-dark" asp-controller="Home" asp-action="FAQ">FAQ bez selektiranog pitanja</a>

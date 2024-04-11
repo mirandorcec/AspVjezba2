@@ -1,0 +1,72 @@
+﻿@model List<Vjezba.Web.Mock.Client>
+@{
+    ViewData["Title"] = "Client Index";
+}
+
+<div>
+    <div class="alert alert-primary text-center" role="alert">
+        U sustavu postoji @Model.Count  klijenata
+    </div>
+
+    @* Tabs *@
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="get-tab" data-bs-toggle="tab" data-bs-target="#get" type="button" role="tab" aria-controls="get" aria-selected="true">Pretraga GET</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="post-tab" data-bs-toggle="tab" data-bs-target="#post" type="button" role="tab" aria-controls="post" aria-selected="false">Pretraga POST</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="filter-tab" data-bs-toggle="tab" data-bs-target="#filter" type="button" role="tab" aria-controls="filter" aria-selected="false">Filter</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="get" role="tabpanel" aria-labelledby="get-tab">
+            <form method='get' action="/Client/Index">
+                <input type="text" name="query" placeholder="Pretraga klijenta" />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div class="tab-pane fade" id="post" role="tabpanel" aria-labelledby="post-tab">
+            <form method='post' action="/Client/Index">
+                <input type="text" name="queryName" placeholder="Pretraga po imenu" />
+                <input type="text" name="queryAddress" placeholder="Pretraga po adresi" />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div class="tab-pane fade" id="filter" role="tabpanel" aria-labelledby="filter-tab">
+            <form method='get' action="/Client/AdvancedSearch">
+                <input type="text" name="FullName" placeholder="Pretraga po imenu" />
+                <input type="text" name="Address" placeholder="Pretraga po adresi" />
+                <input type="text" name="Email" placeholder="Pretraga po emailu" />
+                <input type="text" name="City" placeholder="Pretraga po gradu" />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+
+
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Client</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">City</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var client in Model)
+            {
+                <tr>
+                    <td scope="row"><a class="nav-link" asp-controller="Client" asp-action="Details" asp-route-id="@client.ID">@client.FullName</a></td>
+                    <td>@client.Address</td>
+                    <td>@client.Email</td>
+                    <td>@(client.City != null ? client.City.Name : "")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

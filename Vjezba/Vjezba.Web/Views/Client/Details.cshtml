@@ -1,0 +1,48 @@
+﻿@model Vjezba.Web.Mock.Client
+@{
+    ViewData["Title"] = "Client Details";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Client">Popis klijenata</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.FullName</li>
+    </ol>
+</nav>
+
+<div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="col">ID</th>
+                <td scope="col">@Model.ID</td>
+            </tr>
+            <tr>
+                <th scope="col">Ime i prezime</th>
+                <td scope="col">@Model.FullName</td>
+            </tr>
+            <tr>
+                <th scope="col">Email</th>
+                <td scope="col">@Model.Email</td>
+            </tr>
+            <tr>
+                <th scope="col">Spol</th>
+                <td scope="col">@Model.Gender</td>
+            </tr>
+            <tr>
+                <th scope="col">Adresa</th>
+                <td scope="col">@Model.Address</td>
+            </tr>
+            <tr>
+                <th scope="col">Tel.</th>
+                <td scope="col">@Model.PhoneNumber</td>
+            </tr>
+            <tr>
+                <th scope="col">Grad</th>
+                <td scope="col">@(Model.City != null ? Model.City.Name : "")</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="nav-link" asp-controller="Client" asp-action="Index">Back to list</a>
+</div>

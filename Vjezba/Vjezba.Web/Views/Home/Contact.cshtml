@@ -1,6 +1,72 @@
 ﻿@{
     ViewData["Title"] = "Contact page";
+    var responsePoruka = ViewBag.ResponsePoruka as string;
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Podaci koji su proslijeđeni iz controller-a: @ViewData["Message"]</p>
+
+<button type="button" class="btn btn-primary" id="modal-toggle-button" data-bs-toggle="modal" data-bs-target="#contactModal">
+    Otvori Kontakt Formu
+</button>
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Kontakt Forma</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Home/SubmitQuery" class="p-3">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <label class="row" for="ime">Ime: </label>
+                            <input class="row col-12" type="text" id="ime" name="ime" required placeholder="Unesite ime" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="row" for="prezime">Prezime:</label>
+                            <input class="row col-12" type="text" id="prezime" name="prezime" required placeholder="Unesite prezime" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="row" for="email">Email:</label>
+                        <input class="row col-12" type="email" id="email" name="email" placeholder="Unesite mail" required />
+                    </div>
+
+                    <div>
+                        <label class="row" for="poruke">Poruka:</label>
+                        <textarea class="row col-12" id="poruka" name="poruka" rows="4"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="row" for="tipPoruke">Tip upita:</label>
+                        <select class="row col-12" id="tipPoruke" name="tipPoruke">
+                            <option value="pohvala">Pohvala</option>
+                            <option value="upit">Upit</option>
+                            <option value="poslovni prijedlog">Poslovni prijedlog</option>
+                            <option value="žalba">Žalba</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="row mt-5">
+                        <label class="col-md-9 p-0 col-sm-12">
+                            <input type="checkbox" name="newsletter" />
+                            Želim primati newsletter
+                        </label>
+                        <button class="col-md-2 p-0 col-sm-4 col-xs-4 col-4 btn-primary btn" type="submit">Pošalji!</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+
+</div>

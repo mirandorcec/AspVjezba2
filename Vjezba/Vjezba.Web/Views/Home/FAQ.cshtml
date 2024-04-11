@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "FAQ";
+    int? selectedQuestion = ViewBag.SelectedQuestion as int?;
+    var faqs = ViewBag.FAQs as List<Tuple<string, string>>;
+}
+
+<div class="text-center">
+    <h1 class="display-4">FOOTBALL FAQs</h1>
+    <div style="text-align: left">
+    <ul>
+        @{
+            int i = 1; // Početni indeks za brojanje pitanja
+            if (faqs != null)
+            {
+                foreach (var faq in faqs)
+                {
+                    string questionStyle = (selectedQuestion.HasValue && selectedQuestion.Value == i) ? "font-weight:bold;" : "";
+                    <li style="@questionStyle">@Html.Raw(faq.Item1)</li>
+                    <p>@Html.Raw(faq.Item2)</p>
+                    i++;
+                }
+            }
+        }
+    </ul>
+    </div>
+</div>
